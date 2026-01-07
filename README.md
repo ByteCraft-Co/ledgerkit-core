@@ -81,3 +81,8 @@ It demonstrates categories, transactions across months, analytics, rules, and JS
 - Kotlin JVM target 17
 - kotlinx.serialization for JSON
 - No Android or database dependencies included
+
+## Documentation
+- [Changelog](CHANGELOG.md)
+- [License](LICENSE)
+- [Security Policy](SECURITY.md)
