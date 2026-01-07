@@ -1,0 +1,15 @@
+# Gradle
+.gradle/
+**/build/
+
+# IntelliJ / IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+
+# Keep Gradle wrapper
+!/gradle/wrapper/gradle-wrapper.jar
