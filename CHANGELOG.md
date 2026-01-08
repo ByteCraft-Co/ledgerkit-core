@@ -1,8 +1,15 @@
 # Changelog
 
 ## [Unreleased]
-- Expanded documentation (VitePress site) covering concepts, modules, and cookbook
-- README aligned with docs and examples; no version bump
+- (Reserved for upcoming changes)
+
+## [0.2.0] - 2026-01-08
+- Added official documentation site powered by VitePress
+- Expanded documentation covering concepts, modules, and cookbook
+- Published docs to GitHub Pages
+- Updated README to reference live documentation
+- Branding polish (favicon and site identity)
+- No runtime or API changes
 
 ## [0.1.0] - 2026-01-07
 - Initial release of LedgerKit Core

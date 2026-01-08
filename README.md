@@ -2,6 +2,8 @@
 
 LedgerKit Core is a Kotlin JVM 17 finance domain framework with strongly typed models, analytics utilities, a lightweight rules engine, storage abstractions, and import/export helpers. It has no Android dependencies and ships no database implementations (storage is interface-based).
 
+Documentation: https://bytecraft-co.github.io/ledgerkit-core/
+
 ## Features
 - Models: `Money`, `Transaction`, `Category`, `Budget`, `Recurrence`, validated tags/IDs
 - Analytics: category breakdowns, monthly totals, budget progress
@@ -74,6 +76,8 @@ Run the console example module:
 ```
 
 ## Documentation
+Hosted docs: https://bytecraft-co.github.io/ledgerkit-core/
+
 Local preview of the VitePress docs:
 ```
 cd docs
