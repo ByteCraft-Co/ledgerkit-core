@@ -6,8 +6,8 @@ export default defineConfig({
   lang: 'en',
   base: '/ledgerkit-core/',
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
+    ['link', { rel: 'icon', href: '/ledgerkit-core/favicon.ico' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/ledgerkit-core/favicon.svg' }]
   ],
   themeConfig: {
     nav: [
