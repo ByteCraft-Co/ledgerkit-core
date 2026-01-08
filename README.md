@@ -86,7 +86,7 @@ npm run docs:dev
 ```
 
 ## Stability and Versioning
-- Current version: 0.1.0 (pre-release). APIs may change.
+- Current version: 0.2.0 (First Official Release, pre-1.0). APIs may change.
 - Versioning policy: Semantic Versioning once the API is stable.
 
 ## Development Notes
@@ -98,6 +98,6 @@ npm run docs:dev
 - [Changelog](CHANGELOG.md)
 - [License](LICENSE)
 - [Security Policy](SECURITY.md)
-=======
-- Current version: 0.1.0 (pre-1.0); APIs may change.
+
+- Current version: 0.2.0 (pre-1.0); APIs may change.
 - Semantic Versioning will apply after stabilization.
