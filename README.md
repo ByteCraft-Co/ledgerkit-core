@@ -1,17 +1,17 @@
 # LedgerKit Core
 
-LedgerKit Core is a Kotlin JVM finance domain framework that provides strongly typed money primitives, analytics helpers, a lightweight rules engine, storage abstractions, and import/export utilities. It targets JVM 17 with no Android or database dependencies.
+LedgerKit Core is a Kotlin JVM 17 finance domain framework with strongly typed models, analytics utilities, a lightweight rules engine, storage abstractions, and import/export helpers. It has no Android dependencies and ships no database implementations (storage is interface-based).
 
 ## Features
-- Core models: `Money`, `Transaction`, `Category`, `Budget`, `Recurrence`, and validated IDs
-- Analytics: category breakdowns, monthly totals, and budget progress
-- Rules: composable rules and default auto-categorization patterns
-- Storage: interfaces plus an in-memory reference store for testing/examples
-- Import/Export: JSON snapshots and CSV transaction round-trips with warnings
-- Serialization: kotlinx.serialization for JSON, BigDecimal money, and java.time
+- Models: `Money`, `Transaction`, `Category`, `Budget`, `Recurrence`, validated tags/IDs
+- Analytics: category breakdowns, monthly totals, budget progress
+- Rules: composable engine with default auto-categorization patterns
+- Storage: interfaces plus an in-memory reference store
+- Import/Export: JSON snapshots and CSV round-trips with warnings
+- Serialization: kotlinx.serialization (BigDecimal, java.time)
 
 ## Installation
-The project is currently consumed as a local module. In your multi-project build:
+Use as a local Gradle module:
 ```kotlin
 // settings.gradle.kts
 include(":ledgerkit-core")
@@ -21,15 +21,15 @@ dependencies {
     implementation(project(":ledgerkit-core"))
 }
 ```
-
-### Publishing
-Planned future support for Maven/JitPack distribution. For now, include the module locally.
+Publishing to Maven/JitPack is planned; for now consume locally.
 
 ## Quickstart
 ```kotlin
-import kotlinx.coroutines.runBlocking
 import java.time.LocalDate
 import java.time.YearMonth
+import kotlinx.coroutines.runBlocking
+import ledgerkit.LedgerKit
+import ledgerkit.analytics.Analytics
 import ledgerkit.model.*
 import ledgerkit.rules.DefaultRules
 import ledgerkit.storage.InMemoryLedgerStore
@@ -41,37 +41,45 @@ fun main() = runBlocking {
     Category.predefined().forEach { store.upsertCategory(it) }
 
     val tx = Transaction(
-        id = TransactionId("tx-1"),
-        date = LocalDate.now(),
+        id = TransactionId("tx-uber-1"),
+        date = LocalDate.of(2024, 1, 5),
         type = TransactionType.EXPENSE,
-        amount = Money.of("12.50", CurrencyCode.USD),
-        description = "Coffee to go",
+        amount = Money.of("18.00", CurrencyCode.USD),
+        description = "Uber trip",
         categoryId = null,
-        tags = normalizeTags(listOf("coffee"))
+        tags = normalizeTags(listOf("transport"))
     )
 
-    val categorized = DefaultRules.engine().process(tx)
-    store.upsertTransaction(categorized)
+    val processed = DefaultRules.engine().process(tx)
+    store.upsertTransaction(processed)
 
-    val breakdown = ledgerkit.analytics.Analytics.categoryBreakdown(
+    val month = YearMonth.of(2024, 1)
+    val breakdown = Analytics.categoryBreakdown(
         transactions = store.queryTransactions().getOrThrow(),
-        month = YearMonth.now(),
+        month = month,
         currency = CurrencyCode.USD
     )
-    println(breakdown)
+    println("Breakdown: $breakdown")
 
-    val jsonExport = ledgerkit.LedgerKit.exportJson(store).getOrThrow()
-    val importResult = ledgerkit.LedgerKit.importJson(jsonExport.bytes).getOrThrow()
-    println("Imported transactions: ${importResult.transactions.size}")
+    val export = LedgerKit.exportJson(store).getOrThrow()
+    val imported = LedgerKit.importJson(export.bytes).getOrThrow()
+    println("Imported transactions: ${imported.transactions.size}")
 }
 ```
 
 ## Examples
-A runnable console app lives in the `:examples` module:
+Run the console example module:
 ```
 ./gradlew :examples:run
 ```
-It demonstrates categories, transactions across months, analytics, rules, and JSON/CSV export/import.
+
+## Documentation
+Local preview of the VitePress docs:
+```
+cd docs
+npm install
+npm run docs:dev
+```
 
 ## Stability and Versioning
 - Current version: 0.1.0 (pre-release). APIs may change.
@@ -86,3 +94,6 @@ It demonstrates categories, transactions across months, analytics, rules, and JS
 - [Changelog](CHANGELOG.md)
 - [License](LICENSE)
 - [Security Policy](SECURITY.md)
+=======
+- Current version: 0.1.0 (pre-1.0); APIs may change.
+- Semantic Versioning will apply after stabilization.

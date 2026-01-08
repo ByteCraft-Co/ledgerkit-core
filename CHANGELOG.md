@@ -1,5 +1,9 @@
 # Changelog
 
+## [Unreleased]
+- Expanded documentation (VitePress site) covering concepts, modules, and cookbook
+- README aligned with docs and examples; no version bump
+
 ## [0.1.0] - 2026-01-07
 - Initial release of LedgerKit Core
 - Core domain models (Money, Transaction, Category, Budget, Recurrence, typed IDs)
