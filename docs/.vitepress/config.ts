@@ -4,7 +4,7 @@ export default defineConfig({
   title: 'LedgerKit',
   description: 'Kotlin JVM finance domain framework',
   lang: 'en',
-  base: '/',
+  base: '/ledgerkit-core/',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }]
